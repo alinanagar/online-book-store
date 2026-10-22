@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div class="container">
+        <div id="sidebar"></div>
+        <main id="content"></main>
+    </div>
+
+    <script>
+        async function loadPage(id, file) {
+            try {
+                const response = await fetch(file);
+
+                if (!response.ok) {
+                    throw new Error("File not found: " + file);
+                }
+
+                document.getElementById(id).innerHTML =
+                    await response.text();
+            } catch (error) {
+                document.getElementById(id).textContent =
+                    error.message;
+            }
+        }
+
+        loadPage("header", "Header.html");
+        loadPage("sidebar", "sidebar.html");
+        loadPage("content", "registration.html");
+    </script>
+
+</body>
+</html>
